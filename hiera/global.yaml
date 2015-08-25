@@ -11,3 +11,13 @@ profile::elasticsearch::config:
   node.master: true
   discovery.type: ec2
   discovery.ec2.groups: default
+nginx::nginx_upstreams:
+  'elasticsearch':
+    ensure: present
+    members:
+      - localhost:9200
+nginx::nginx_vhosts:
+  'elasticsearch':
+    proxy: 'http://elasticsearch'
+    #auth_basic: 'Protected Elasticsearch'
+    #auth_basic_user_file: 
