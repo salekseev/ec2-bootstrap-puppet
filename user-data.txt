@@ -8,10 +8,6 @@ Content-Transfer-Encoding: 7bit
 Content-Disposition: attachment; filename="cloud-config.txt"
 
 #cloud-config
-# Cloud-Init Hints:
-# * Some default settings are in /etc/cloud/cloud.cfg
-# * Some examples at: http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/doc/examples/
-# * CloudInit Module sourcecode at: http://bazaar.launchpad.net/~cloud-init-dev/cloud-init/trunk/files/head:/cloudinit/config/
  
 preserve_hostname: true
 manage_etc_hosts: false
@@ -72,7 +68,7 @@ EOF
 augtool 'set /files/etc/puppet/puppet.conf/main/environmentpath $confdir/environments'
 augtool 'set /files/etc/puppet/puppet.conf/main/environment production'
 
-git clone -b master https://github.com/salekseev/ec2-bootstrap-puppet.git /etc/puppet/environments/production
+git clone -b master https://github.com/salekseev/ec2-bootstrap-puppet-elasticsearch.git /etc/puppet/environments/production
 # Run librarian-puppet
 cd /etc/puppet/environments/production && HOME=/root librarian-puppet install
  
