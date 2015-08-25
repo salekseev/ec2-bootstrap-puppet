@@ -2,3 +2,9 @@
 classes:
   - 'profile::base'
   - 'profile::elasticsearch'
+profile::elasticsearch::config:
+  cluster.name: 'elasticsearch.test'
+  node.data: true
+  node.master: true
+  discovery.type: ec2
+  discovery.ec2.groups: default
