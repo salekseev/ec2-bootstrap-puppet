@@ -2,6 +2,9 @@
 classes:
   - 'profile::base'
   - 'profile::elasticsearch'
+elasticsearch::install_java: true
+elasticsearch::manage_repo: true
+elasticsearch::repo_version: '1.7'
 profile::elasticsearch::config:
   cluster.name: 'elasticsearch.test'
   node.data: true

@@ -33,6 +33,7 @@ packages:
  - puppet
  - librarian-puppet
  - augeas-tools
+ - default-jre-headless
  
 # set the locale
 locale: en_US.UTF-8
