@@ -30,4 +30,9 @@ where security-group-ids contains the security group you have created for those 
 
 ##### Connect
 - Lookup Public IP in AWS console for your new instance and connect with SSH as user admin to verify that puppet has ran successfully.
-- Go to https://$public_ip/_cat/nodes?v and use user:password for authentication and see the list of nodes in the cluster.
+- Go to https://$public_ip/_cat/nodes?v and use user:password for authentication and see the list of nodes in the cluster like:
+```
+host                     ip        heap.percent ram.percent load node.role master name                                 
+elasticsearch-i-140a4abf 127.0.1.1            4          31 0.02 d         *      elasticsearch-i-140a4abf-instance-01 
+elasticsearch-i-d2185879 127.0.1.1            4          31 0.16 d         m      elasticsearch-i-d2185879-instance-01 
+```
