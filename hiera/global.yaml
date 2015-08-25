@@ -23,7 +23,6 @@ nginx::nginx_vhosts:
     auth_basic: 'Protected Elasticsearch'
     auth_basic_user_file: '/etc/nginx/htpasswd'
     ssl: true
-    ssl_only: true
     ssl_cert: '/etc/ssl/certs/elasticsearch.crt'
     ssl_key: '/etc/ssl/certs/elasticsearch.key'
 profile::elasticsearch_proxy::user: 'user'
