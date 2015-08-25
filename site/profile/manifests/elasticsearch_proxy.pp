@@ -2,8 +2,19 @@ class profile::elasticsearch_proxy (
   $user,
   $password
 ) {
-  class { '::nginx': }
+
+  openssl::certificate::x509 { 'elasticsearch':
+    country      => 'US',
+    organization => 'salekseev.com',
+    commonname   => $fqdn,
+  }
+
   ->
+
+  class { '::nginx': }
+
+  ->
+
   httpauth { "$user":
     file      => '/etc/nginx/htpasswd',
     password  => $password,
@@ -11,4 +22,5 @@ class profile::elasticsearch_proxy (
     mechanism => basic,
     ensure    => present,
   }
+
 }
