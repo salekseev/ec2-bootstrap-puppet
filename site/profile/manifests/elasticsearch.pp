@@ -7,6 +7,7 @@ class profile::elasticsearch ($config) {
     config => $config,
   }
   elasticsearch::plugin { 'elasticsearch/elasticsearch-cloud-aws/2.7.0':
-    module_dir => 'elasticsearch-cloud-aws'
+    module_dir => 'elasticsearch-cloud-aws',
+    instances  => ['instance-01']
   }
 }
