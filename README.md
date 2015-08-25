@@ -1,3 +1,25 @@
+h3. Pre-requisites:
+- Need a read only IAM role (in our case 'saltmaster') configured like:
+```
+{
+    "Statement": [
+        {
+            "Action": [
+                "ec2:DescribeInstances"
+            ],
+            "Effect": "Allow",
+            "Resource": [
+                "*"
+            ]
+        }
+    ],
+    "Version": "2012-10-17"
+}
+```
+- Need a network security (in our case it's called default and has id of sg-66f6fb03).
+
+- Need a VPC subnet (in our case id of subnet-810defaa).
+
 h3. Start an instance with Debian Jessie (https://wiki.debian.org/Cloud/AmazonEC2Image/Jessie)
 ```
 aws ec2 run-instances --image-id ami-116d857a --count 1 --instance-type t2.micro --key-name salekseev-dfci --security-group-ids sg-66f6fb03 --subnet-id subnet-810defaa --iam-instance-profile Name="saltmaster" --user-data file://user-data.txt
