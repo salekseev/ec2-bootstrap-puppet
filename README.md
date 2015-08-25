@@ -18,7 +18,7 @@ h3. Pre-requisites:
     "Version": "2012-10-17"
 }
 ```
-- Need a network security (in our case it's called default and has id of sg-66f6fb03).
+- Need a network security group (in our case it's called default and has id of sg-66f6fb03) that allows HTTPS and optionally SSH.
 
 - Need a VPC subnet (in our case id of subnet-810defaa).
 
@@ -30,3 +30,4 @@ where security-group-ids contains the security group you have created for those 
 
 h3. Connect
 - Lookup Public IP in AWS console for your new instance and connect with SSH as user admin to verify that puppet has ran successfully.
+- Go to https://$public_ip/_cat/nodes?v and use user:password for authentication and see the list of nodes in the cluster.
