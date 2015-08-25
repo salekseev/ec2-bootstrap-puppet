@@ -1,4 +1,6 @@
 h3. Pre-requisites:
+- Git clone this repo.
+
 - Need a read only IAM role (in our case 'saltmaster') configured like:
 ```
 {
