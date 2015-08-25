@@ -20,5 +20,5 @@ nginx::nginx_upstreams:
 nginx::nginx_vhosts:
   'elasticsearch':
     proxy: 'http://elasticsearch'
-    #auth_basic: 'Protected Elasticsearch'
-    #auth_basic_user_file: 
+    auth_basic: 'Protected Elasticsearch'
+    auth_basic_user_file: '/etc/nginx/htpasswd'

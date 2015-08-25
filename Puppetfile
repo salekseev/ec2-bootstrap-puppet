@@ -7,3 +7,4 @@ mod 'puppetlabs/java'
 mod 'elasticsearch/elasticsearch',
   :git => 'https://github.com/elastic/puppet-elasticsearch'
 mod 'jfryman/nginx'
+mod 'jamtur01/httpauth'
