@@ -1,3 +1,12 @@
+Content-Type: multipart/mixed; boundary="===============2713521695693610460=="
+MIME-Version: 1.0
+
+--===============2713521695693610460==
+Content-Type: text/cloud-config; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="cloud-config.txt"
+
 #cloud-config
 # Cloud-Init Hints:
 # * Some default settings are in /etc/cloud/cloud.cfg
@@ -23,6 +32,7 @@ packages:
  - rubygems
  - puppet
  - librarian-puppet
+ - augeas-tools
  
 # set the locale
 locale: en_US.UTF-8
@@ -35,3 +45,37 @@ output: {all: ">> /var/log/cloud-init-output.log"}
  
 # final_message written to log when cloud-init processes are finished
 final_message: "System boot (via cloud-init) is COMPLETE, after $UPTIME seconds. Finished at $TIMESTAMP"
+
+--===============2713521695693610460==
+Content-Type: text/plain; charset="us-ascii"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Content-Disposition: attachment; filename="user-script.txt"
+
+#!/bin/bash
+
+cat << 'EOF' > /etc/puppet/hiera.yaml
+---
+:backends:
+  - yaml
+:hierarchy:
+  - "node/%{clientcert}"
+  - "environment/%{environment}"
+  - global
+
+:yaml:
+# When specifying a datadir, make sure the directory exists.
+  :datadir: /etc/puppet/environments/%{environment}/hiera
+EOF
+
+augtool 'set /files/etc/puppet/puppet.conf/main/environmentpath $confdir/environments'
+augtool 'set /files/etc/puppet/puppet.conf/main/environment production'
+
+git clone -b master https://github.com/salekseev/ec2-bootstrap-puppet.git /etc/puppet/environments/production
+# Run librarian-puppet
+cd /etc/puppet/environments/production && HOME=/root librarian-puppet install
+ 
+# Run puppet
+puppet apply /etc/puppet/environments/production/site.pp
+
+--===============2713521695693610460==--

@@ -1,8 +1,0 @@
- #!/bin/bash
-
-git clone -b master https://github.com/salekseev/ec2-bootstrap-puppet.git /etc/puppet/environments/production
-# Run librarian-puppet
-cd /etc/puppet/environments/production && HOME=/root librarian-puppet install
- 
-# Run puppet
-puppet apply /etc/puppet/environments/production/site.pp
