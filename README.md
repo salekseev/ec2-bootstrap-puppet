@@ -1,7 +1,7 @@
 ##### Pre-requisites:
 - Git clone this repo.
 
-- Need a read only IAM role (in our case 'saltmaster') configured like:
+- Need a read only IAM role (in our case 'roiamrole') configured like:
 ```
 {
     "Statement": [
@@ -24,7 +24,7 @@
 
 ##### Start an instance with Debian Jessie (https://wiki.debian.org/Cloud/AmazonEC2Image/Jessie)
 ```
-aws ec2 run-instances --image-id ami-116d857a --count 1 --instance-type t2.micro --key-name salekseev-dfci --security-group-ids sg-66f6fb03 --subnet-id subnet-810defaa --iam-instance-profile Name="saltmaster" --user-data file://user-data.txt
+aws ec2 run-instances --image-id ami-116d857a --count 1 --instance-type t2.micro --key-name privatesshkey --security-group-ids sg-66f6fb03 --subnet-id subnet-810defaa --iam-instance-profile Name="roiamrole" --user-data file://user-data.txt
 ```
 where security-group-ids contains the security group you have created for those instances and subnet-id is the VPC subnet you'd like to use.
 
