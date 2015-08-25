@@ -23,4 +23,11 @@ class profile::elasticsearch_proxy (
     ensure    => present,
   }
 
+  ->
+
+  file { '/etc/nginx/htpasswd':
+    group => 'www-data',
+    mode  => 0640,
+  }
+
 }
